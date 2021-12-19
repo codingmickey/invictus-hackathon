@@ -1,7 +1,11 @@
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20');
-const User = require('../models/user-model');
+import passport from 'passport';
+import GoogleStrategy from 'passport-google-oauth20';
+import User from '../models/userModel.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
+const GOOGLE_CALLBACK_URL =
+  'http://localhost:3001/martopia/user/login/google/redirect';
 passport.use(
   new GoogleStrategy(
     {
@@ -9,11 +13,11 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       // CHANGE THIS
-      callbackURL: 'http://localhost:3000/dashboard',
+      callbackURL: GOOGLE_CALLBACK_URL,
     },
     (accessToken, refreshToken, profile, done) => {
       // check if user already exists in our db
-      User.findOne({ googleId: profile.id }).then((currentUser) => {
+      User.findOne({ email: profile.emails[0].value }).then((currentUser) => {
         if (currentUser) {
           // user already there
           console.log('User Already there!');
@@ -22,7 +26,7 @@ passport.use(
           // Create new user
           new User({
             name: profile.displayName,
-            googleId: profile.id,
+            email: profile.emails[0].value,
           })
             .save()
             .then((newUser) => {
@@ -31,16 +35,17 @@ passport.use(
             });
         }
       });
-    },
-  ),
+    }
+  )
 );
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser((id, done) => {
   try {
-    User.findById(id, (err, user) => {
-      done(err, user);
+    User.findById(id, (user) => {
+      done(null, user);
     });
   } catch (err) {
     console.log(err);
+    done(err, null);
   }
 });
