@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Montserrat:wght@900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* font-family: 'Merriweather', serif;
+font-family: 'Poppins', sans-serif; */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Home Page */
+.Home__Box {
+  width: 100%;
+}
+.Home__Box-lg {
+  height: 85vh;
+}
+.Home__Box-md {
+  height: 31.25rem;
+}
+.Home__Box-sm {
+  height: 17rem;
+}
+
+.Home__Box--blue {
+  background-color: #3282b8;
+}
+
+.Home__MyWave {
+  position: relative;
+  top: -26px;
+}
+
+.Home__Box__Card {
+  height: 466px;
+  width: 341px;
+
+  background: #f2f7ff;
+  border-radius: 20px;
+}
+.Home__Card-1 {
+  position: absolute;
+  top: 47rem;
+  left: 5rem;
+}
+.Home__Card-2 {
+  position: absolute;
+  top: 82rem;
+  right: 5rem;
+}
+.Home__Card-3 {
+  position: absolute;
+  top: 120rem;
+  left: 5rem;
+}
