@@ -12,7 +12,7 @@ const Footer = () => {
         <TwitterIcon fontSize="large" color="primary" sx={{ mx: 2, my: 2 }} />
         <FacebookIcon fontSize="large" color="primary" sx={{ mx: 2, my: 2 }} />
         <p className="footer-text">
-          Made with <span className="footer-heart">❤</span> by Kartik Jolapara
+          Made with <span className="footer-heart">❤</span> by The Invictus Team
         </p>
         <Typography variant="body1" mb={4}>
           Copyright &copy; {d.getFullYear()}

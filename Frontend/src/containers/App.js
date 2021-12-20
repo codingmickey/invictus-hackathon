@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@mui/system';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
+import React from 'react';
 import './App.css';
 import Home from '../components/Home-page/Home';
 import customTheme from './theme';
@@ -8,6 +9,9 @@ import Register from '../components/Register';
 import NotFound from '../components/NotFound';
 import Dashboard from '../components/Dashboard/Dashboard';
 import Login from '../components/Login';
+import CreateReq from '../components/Dashboard/Customer/Create-request/CreateReq';
+import Bid from '../components/Dashboard/Seller/SelectBid/Bid';
+import Acceptbid from '../components/Dashboard/Customer/Accept-bid/Acceptbid';
 
 function App() {
   return (
@@ -27,8 +31,18 @@ function App() {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
+            <li>
+              <Link to="/createNewRequest">createNewRequest</Link>
+            </li>
+            <li>
+              <Link to="/showBids">showBids</Link>
+            </li>
+            <li>
+              <Link to="/acceptBids">acceptBids</Link>
+            </li>
           </ul>
         </nav>
+
         {/* A <> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
@@ -36,6 +50,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/createNewRequest" element={<CreateReq />} />
+          <Route path="/showBids" element={<Bid />} />
+          <Route path="/acceptBids" element={<Acceptbid />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

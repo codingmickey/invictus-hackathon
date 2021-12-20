@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MuiLInk from '@mui/material/Link';
@@ -27,6 +27,7 @@ import { InputBase, Menu, MenuItem } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
+import RightSideBar from './Customer/RightSideBar/RightSideBar';
 
 function Copyright(props) {
   return (
@@ -310,15 +311,13 @@ function DashboardContent() {
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
           flexGrow: 1,
           height: '100vh',
           overflow: 'auto'
         }}>
         <Toolbar />
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Grid container spacing={3}>
+        <Grid container>
+          <Grid container lg={8} md={10}>
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper
@@ -350,8 +349,16 @@ function DashboardContent() {
               </Paper>
             </Grid>
           </Grid>
-          <Copyright sx={{ pt: 4 }} />
-        </Container>
+          <Grid item lg={4} md={2} sx={{ backgroundColor: '#3282B840' }} px={2}>
+            <Typography variant="h4" sx={{ fontWeight: '600', padding: '4.5rem 0 3rem 1rem ' }}>
+              New Bids
+            </Typography>
+            <Grid lg={8} sx={{ backgroundColor: 'white', borderRadius: 12 }} p={2}>
+              {/* <RightSideBar /> */}Hey tehre
+            </Grid>
+          </Grid>
+        </Grid>
+        <Copyright sx={{ pt: 4 }} />
       </Box>
     </Box>
   );

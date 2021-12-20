@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from '../images/Logo.svg';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -152,8 +153,16 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: '#0F4C75' }}>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
-            <AddBusinessIcon sx={{ fontSize: 40 }} />
+          <IconButton edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 1 }}>
+            {/* <AddBusinessIcon /> */}
+            <Logo
+              style={{
+                height: '3.4rem',
+                width: '3.4rem',
+                backgroundColor: 'white',
+                borderRadius: '50%'
+              }}
+            />
           </IconButton>
           <Link to="/">
             <Typography
