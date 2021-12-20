@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import OfflineBoltRoundedIcon from '@mui/icons-material/OfflineBoltRounded';
-import {
-  FormControl,
-  IconButton,
-  InputAdornment,
-  TextField,
-} from '@mui/material';
+import { Button, Grid, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
 import axios from 'axios';
-import CustomButton from './CustomButton';
 
 import GoogleButton from 'react-google-button';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 
 function Login() {
   const [values, setValues] = useState({
@@ -22,14 +16,14 @@ function Login() {
     showPassword: false,
     name: '',
     mobileNumber: '',
-    role: '',
+    role: ''
   });
-  let history = useHistory();
+  let history = useNavigate();
 
   useEffect(() => {
     let reqOptions = {
       url: '/verify',
-      method: 'GET',
+      method: 'GET'
     };
     axios.request(reqOptions).then(function (response) {
       console.log(response.data.msg);
@@ -48,7 +42,7 @@ function Login() {
   const handleClickShowPassword = () => {
     setValues({
       ...values,
-      showPassword: !values.showPassword,
+      showPassword: !values.showPassword
     });
   };
   const handleMouseDownPassword = (event) => {
@@ -56,43 +50,41 @@ function Login() {
   };
 
   return (
-    <div className="login">
-      <h2>
-        <Link to="/">
-          <OfflineBoltRoundedIcon
-            sx={{ fontSize: '5rem', position: 'relative', top: '1.5rem' }}
-          />
-          Electrify
-        </Link>
-      </h2>
-      <hr />
+    <Grid>
+      <Grid lg={4} md={8} xs={11} sx={{ mx: 'auto' }}>
+        <h2 style={{ color: 'black', marginTop: 0, paddingTop: '0.83em', textAlign: 'center' }}>
+          <Link to="/">
+            <IconButton edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
+              <AddBusinessIcon sx={{ fontSize: '3.5rem' }} />
+            </IconButton>
+            <Typography variant="h2" sx={{ fontFamily: 'Poppins', fontWeight: 900 }}>
+              Martopia
+            </Typography>
+          </Link>
+        </h2>
+        <hr />
+        <Typography variant="h4" sx={{ mt: 4 }}>
+          Sign in to your account{' '}
+        </Typography>
 
-      <GoogleButton
-        className="google-button"
-        label="Continue with Google"
-        onClick={() => {
-          window.location.href = 'http://localhost:3001/user/auth/google';
-        }}
-      />
-      <h3>OR</h3>
-
-      <form action="/user/login" method="post">
-        <FormControl sx={{ m: 1, width: '20rem' }} variant="outlined">
+        <form action="/user/register" method="post">
+          {/* <FormControl sx={{ m: 1 }} variant="outlined" action="/login" method="post"> */}
           {/* Email */}
-          <p className="pre-label">Email address</p>
           <TextField
             id="email"
             label="Email"
             variant="outlined"
+            type="email"
             name="email"
-            fullWidth
             value={values.email}
             onChange={handleChange('email')}
             required
+            fullWidth
             autoFocus="true"
+            sx={{ my: '1rem', mt: '2rem' }}
           />
+
           {/* Password */}
-          <p className="pre-label">Password</p>
           <TextField
             label="Password"
             type={values.showPassword ? 'text' : 'password'}
@@ -110,26 +102,41 @@ function Login() {
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
-              ),
+              )
             }}
             required
+            sx={{ my: '1rem' }}
+            fullWidth
             aria-describedby="outlined-password-helper-text"
           />
 
-          <div className="register-signup-button"></div>
-          <CustomButton
-            name="Log In"
-            col="black"
-            buttonColor="green-button"
+          {/* Log in buttons */}
+          <Button
             type="submit"
-          />
-          <br />
-          <h4 className="pre-label" style={{ textAlign: 'center' }}>
-            Don't have an account? <a href="/register">Sign Up</a>.
+            variant="contained"
+            color="primary"
+            fullWidth
+            size="large"
+            sx={{ mt: 2, fontSize: '1.15rem' }}>
+            Log In
+          </Button>
+          <Typography variant="h5" align="center" my={2}>
+            Or
+          </Typography>
+          <Grid align="center">
+            <GoogleButton
+              label="Continue with Google"
+              fullWidth
+              style={{ width: '100%', fontFamily: 'Poppins', fontSize: '1.15rem' }}
+            />
+          </Grid>
+          <h4 style={{ textAlign: 'center' }}>
+            Don&apos;t have an account? <a href="/register">Sign Up</a>.
           </h4>
-        </FormControl>
-      </form>
-    </div>
+          {/* </FormControl> */}
+        </form>
+      </Grid>
+    </Grid>
   );
 }
 

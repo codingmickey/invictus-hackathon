@@ -15,6 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -154,17 +155,20 @@ export default function PrimarySearchAppBar() {
           <IconButton edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
             <AddBusinessIcon sx={{ fontSize: 40 }} />
           </IconButton>
-          <Typography
-            variant="h4"
-            noWrap
-            component="div"
-            sx={{
-              display: { xs: 'none', sm: 'block' },
-              fontFamily: 'Montserrat',
-              fontWeight: 900
-            }}>
-            Martopia
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h4"
+              noWrap
+              component="div"
+              color="white"
+              sx={{
+                display: { xs: 'none', sm: 'block' },
+                fontFamily: 'Montserrat',
+                fontWeight: 900
+              }}>
+              Martopia
+            </Typography>
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -173,11 +177,6 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
             <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />

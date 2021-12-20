@@ -1,16 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import OfflineBoltRoundedIcon from '@mui/icons-material/OfflineBoltRounded';
 import { IMaskInput } from 'react-imask';
-import {
-  FormControl,
-  FormControlLabel,
-  IconButton,
-  InputAdornment,
-  TextField,
-  RadioGroup,
-  Radio,
-} from '@mui/material';
-import CustomButton from './CustomButton';
+import { InputAdornment, TextField, Button, Typography, Grid } from '@mui/material';
+
+import IconButton from '@mui/material/IconButton';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -24,7 +18,7 @@ const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
       {...other}
       mask="0000000000"
       definitions={{
-        '#': /[1-9]/,
+        '#': /[1-9]/
       }}
       inputRef={ref}
       onAccept={(value) => onChange({ target: { name: props.name, value } })}
@@ -40,7 +34,7 @@ function Register() {
     showPassword: false,
     name: '',
     mobileNumber: '',
-    role: '',
+    role: ''
   });
 
   const handleChange = (prop) => (event) => {
@@ -51,7 +45,7 @@ function Register() {
   const handleClickShowPassword = () => {
     setValues({
       ...values,
-      showPassword: !values.showPassword,
+      showPassword: !values.showPassword
     });
   };
   const handleMouseDownPassword = (event) => {
@@ -59,25 +53,23 @@ function Register() {
   };
 
   return (
-    <div className="register">
-      <h2 style={{ color: 'black', marginTop: 0, paddingTop: '0.83em' }}>
-        <Link to="/">
-          <OfflineBoltRoundedIcon
-            sx={{ fontSize: '3.5rem', position: 'relative', top: '1rem' }}
-          />
-          Electrify
-        </Link>
-      </h2>
-      <h1>Sign up with your email address</h1>
-      <form action="/user/register" method="post">
-        <FormControl
-          sx={{ m: 1, width: '20rem' }}
-          variant="outlined"
-          action="/login"
-          method="post"
-        >
+    <Grid>
+      <Grid lg={4} md={8} xs={11} sx={{ mx: 'auto' }}>
+        <h2 style={{ color: 'black', marginTop: 0, paddingTop: '0.83em', textAlign: 'center' }}>
+          <Link to="/">
+            <IconButton edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
+              <AddBusinessIcon sx={{ fontSize: '3.5rem' }} />
+            </IconButton>
+
+            <Typography variant="h2" sx={{ fontFamily: 'Poppins', fontWeight: 900 }}>
+              Martopia
+            </Typography>
+          </Link>
+        </h2>
+        <Typography variant="h4">Create a new account for free </Typography>
+        <form action="/user/register" method="post">
+          {/* <FormControl sx={{ m: 1 }} variant="outlined" action="/login" method="post"> */}
           {/* Email */}
-          <p className="pre-label">What's your email?</p>
           <TextField
             id="email"
             label="Email"
@@ -87,11 +79,12 @@ function Register() {
             value={values.email}
             onChange={handleChange('email')}
             required
+            fullWidth
             autoFocus="true"
+            sx={{ my: '1rem', mt: '2rem' }}
           />
 
           {/* Password */}
-          <p className="pre-label">Create a password</p>
           <TextField
             label="Password"
             helperText="Enter a 6 digit password"
@@ -106,19 +99,19 @@ function Register() {
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
+                    edge="end">
                     {values.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
-              ),
+              )
             }}
             required
+            sx={{ my: '1rem' }}
+            fullWidth
             aria-describedby="outlined-password-helper-text"
           />
 
           {/* Name */}
-          <p className="pre-label">What should we call you?</p>
           <TextField
             id="name"
             label="Name"
@@ -126,11 +119,12 @@ function Register() {
             name="name"
             value={values.name}
             required
+            fullWidth
+            sx={{ my: '1rem' }}
             onChange={handleChange('name')}
           />
 
           {/* Mobile Number */}
-          <p className="pre-label">What's your Mobile Number?</p>
           <TextField
             label="Mobile Number"
             value={values.mobileNumber}
@@ -138,48 +132,36 @@ function Register() {
             name="mobileNumber"
             id="mobile-number"
             InputProps={{
-              inputComponent: TextMaskCustom,
+              inputComponent: TextMaskCustom
             }}
             inputProps={{
               type: 'tel',
               minlength: '10',
-              maxlength: '10',
+              maxlength: '10'
             }}
+            fullWidth
+            sx={{ my: '1rem' }}
             required
           />
 
-          {/* Fields */}
-          <p className="pre-label">What's your role?</p>
-          <RadioGroup row aria-label="role" name="role">
-            <FormControlLabel
-              value="user"
-              onChange={handleChange('role')}
-              control={<Radio required />}
-              label="User"
-            />
-            <FormControlLabel
-              value="artist"
-              onChange={handleChange('role')}
-              control={<Radio required />}
-              label="Artist"
-            />
-          </RadioGroup>
-
           {/* Sign Up buttons */}
-          <div className="register-signup-button"></div>
-          <CustomButton
-            name="Sign up"
-            col="black"
-            buttonColor="green-button"
+          <Button
             type="submit"
-          />
+            variant="contained"
+            color="primary"
+            fullWidth
+            size="large"
+            sx={{ mt: 2, fontSize: '1.15rem' }}>
+            Sign up
+          </Button>
           <br />
-          <h4 className="pre-label" style={{ textAlign: 'center' }}>
+          <h4 style={{ textAlign: 'center' }}>
             Have an account? <a href="/login">Log in</a>.
           </h4>
-        </FormControl>
-      </form>
-    </div>
+          {/* </FormControl> */}
+        </form>
+      </Grid>
+    </Grid>
   );
 }
 

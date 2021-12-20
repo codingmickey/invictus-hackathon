@@ -3,14 +3,17 @@ import React from 'react';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
-const HomeFooter = () => {
+const Footer = () => {
   const d = new Date();
 
   return (
     <div>
-      <Box className="Home__Box" mt={6} pb={4} textAlign="center">
+      <Box className="Home__Box" textAlign="center">
         <TwitterIcon fontSize="large" color="primary" sx={{ mx: 2, my: 2 }} />
         <FacebookIcon fontSize="large" color="primary" sx={{ mx: 2, my: 2 }} />
+        <p className="footer-text">
+          Made with <span className="footer-heart">❤</span> by Kartik Jolapara
+        </p>
         <Typography variant="body1" mb={4}>
           Copyright &copy; {d.getFullYear()}
         </Typography>
@@ -19,4 +22,4 @@ const HomeFooter = () => {
   );
 };
 
-export default HomeFooter;
+export default Footer;
