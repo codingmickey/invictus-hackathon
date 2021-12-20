@@ -18,6 +18,7 @@ const callback = passport.authenticate('google', {
 };
 
 const jwtToken = async (req, res) => {
+  console.log('hello');
   console.log(req.user);
   const token = createToken(req.user._id);
   console.log(token);

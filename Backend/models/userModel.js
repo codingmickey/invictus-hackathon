@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -19,7 +18,7 @@ const userSchema = new Schema(
       trim: true,
     },
 
-    address: {
+    location: {
       type: String,
     },
     password: {
@@ -29,10 +28,8 @@ const userSchema = new Schema(
     },
     mobileNumber: {
       type: Number,
-      // unique: [true, 'Mobile no already used'],
       maxlength: [10, 'Plz enter a valid 10 digit number'],
-      maxlength: [10, 'Plz enter a valid 10 digit number'],
-      maxlength: 10,
+      minlength: [10, 'Plz enter a valid 10 digit number'],
     },
     role: String, // client, vendor
     googleId: { type: String },
@@ -43,6 +40,7 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
 const maxTime = 3 * 24 * 60 * 60;
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
