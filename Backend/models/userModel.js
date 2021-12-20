@@ -28,10 +28,8 @@ const userSchema = new Schema(
     },
     mobileNumber: {
       type: Number,
-      unique: [true, 'Mobile no already used'],
       maxlength: [10, 'Plz enter a valid 10 digit number'],
-      maxlength: [10, 'Plz enter a valid 10 digit number'],
-      maxlength: 10,
+      minlength: [10, 'Plz enter a valid 10 digit number'],
     },
     role: String, // client, vendor
     googleId: { type: String },

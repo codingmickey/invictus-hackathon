@@ -6,7 +6,6 @@ const Register = async (req, res) => {
     const newVendor = new vendor({
       ...req.body,
       name: req.user.name,
-      password: req.user.password,
       email: req.user.email,
       mobileNumber: req.user.mobileNumber
         ? req.user.mobileNumber

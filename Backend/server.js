@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import './config/passport-setup.js';
-// import cookieSession from 'cookie-session';
+import cookieSession from 'cookie-session';
 
 dotenv.config();
 import db from './config/db.js';
@@ -18,6 +18,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.TOKEN_SECRET],
+  })
+);
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(morgan(':method :url :status :response-time ms'));
