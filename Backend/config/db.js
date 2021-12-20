@@ -1,17 +1,24 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import colors from 'colors';
 
-module.exports.connect = async () => {
+const db = async () => {
   try {
-    await mongoose.connect(
+    const conn = await mongoose.connect(
       //process.env.DB_CONNECT
-      'mongodb://localhost:27017/bluemartDB',
+      process.env.URI,
       {
-        useNewUrlParser: true,
         useUnifiedTopology: true,
-      },
+        useNewUrlParser: true,
+      }
     );
-    console.log('Database Connected');
-  } catch {
-    console.log('Database not Connected');
+    console.log(
+      `MongoDB Connected: ${conn.connection.host}`.bgWhite.black.bold
+    );
+  } catch (error) {
+    console.log(error);
+    console.error(`Mongo DB Error: ${error.message}`.red.underline.bold);
+    process.exit(1);
   }
 };
+
+export default db;

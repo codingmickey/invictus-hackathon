@@ -1,36 +1,27 @@
-const express = require('express');
-
-const oauth = require('../controllers/oauth');
-const auth = require('../controllers/auth');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import { ologin, callback, jwtToken } from '../controllers/oauth.js';
+import {
+  register,
+  login,
+  logoutUser,
+  showMyProfile,
+  updateUser,
+} from '../controllers/userController.js';
+import protect from '../middleware/authMiddleware.js';
 
 const router = express.Router();
-router.use(express.json());
 
-// Register Route
-router
-  .route('/register')
-  .get((req, res) => {
-    res.send('Sign Up Page');
-  })
-  .post(auth.register);
-
-// Login Route
-router
-  .route('/login')
-  .get((req, res) => {
-    res.send('Login Page');
-  })
-  .post(auth.login);
-
-// auth logout
-router.get('/logout', (req, res) => {
-  // handle with passport
-});
-
+router.route('/register').post(register); // Register Route
+router.route('/login').post(login); // Login Route
+router.route('/logout').post(protect, logoutUser);
+router.route('/showMe').get(protect, showMyProfile);
+router.route('/update').put(protect, updateUser);
+// (req, res) => { // auth logout
+//   // handle with passport
+// });
 // OAUTH Routes for GOOGLE, login with google
-router.get('/auth/google', oauth.login);
+router.route('/auth/google').get(ologin);
 // callback route for google to redirect
-router.get('/auth/google/redirect', oauth.callback, oauth.jwtToken);
+router.route('/login/google/redirect').get(callback);
 
-module.exports = router;
+export default router;
