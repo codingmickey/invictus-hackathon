@@ -7,7 +7,8 @@ import GoogleButton from 'react-google-button';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link, useNavigate } from 'react-router-dom';
-import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+
+import { ReactComponent as Logo } from '../images/Logo.svg';
 
 function Login() {
   const [values, setValues] = useState({
@@ -55,7 +56,14 @@ function Login() {
         <h2 style={{ color: 'black', marginTop: 0, paddingTop: '0.83em', textAlign: 'center' }}>
           <Link to="/">
             <IconButton edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
-              <AddBusinessIcon sx={{ fontSize: '3.5rem' }} />
+              <Logo
+                style={{
+                  height: '5rem',
+                  width: '5rem',
+                  backgroundColor: 'white',
+                  borderRadius: '50%'
+                }}
+              />
             </IconButton>
             <Typography variant="h2" sx={{ fontFamily: 'Poppins', fontWeight: 900 }}>
               Martopia

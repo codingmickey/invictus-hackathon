@@ -11,8 +11,6 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 // import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import MuiLInk from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -23,20 +21,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/Logo.svg';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <MuiLInk color="inherit" href="https://mui.com/">
-        Your Website
-      </MuiLInk>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import ShowBids from './Customer/Show-bids/ShowBids';
 
 const drawerWidth = 240;
 
@@ -124,7 +109,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }
 }));
 
-function DashboardContent() {
+function DashboardShowBid() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -311,61 +296,9 @@ function DashboardContent() {
         <Divider />
         <List>{secondaryListItems}</List>
       </Drawer>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          height: '100vh',
-          overflow: 'auto'
-        }}>
-        <Toolbar />
-        <Grid container>
-          <Grid container lg={7} md={10} sm={12}>
-            <Grid
-              item
-              lg={12}
-              md={8}
-              sm={12}
-              sx={{
-                backgroundColor: '#0075A2',
-                borderRadius: 2,
-                margin: '3rem 2rem',
-                paddingRight: '2rem'
-              }}
-              display="flex"
-              justifyContent="space-evenly"
-              alignContent="space-around"
-              flexWrap="wrap">
-              <Link to="/createNewRequest">
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    flexWrap: 'wrap'
-                  }}>
-                  <AddCircleIcon sx={{ color: 'white', fontSize: 60 }} />
-                  <Typography variant="h5" color="white" sx={{ fontSize: '1.5rem' }}>
-                    <strong>Create a new Request</strong>
-                  </Typography>
-                </div>
-              </Link>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}></Grid>
-          </Grid>
-          <Grid item lg={5} md={12} sx={{ backgroundColor: '#3282B840' }} px={2}>
-            <Typography variant="h4" sx={{ fontWeight: '600', padding: '4.5rem 0 3rem 1rem ' }}>
-              New Bids
-            </Typography>
-            <Grid lg={8} sx={{ backgroundColor: 'white', borderRadius: 12 }} p={2}></Grid>
-          </Grid>
-        </Grid>
-        <Copyright sx={{ pt: 4 }} />
-      </Box>
+      <ShowBids />
     </Box>
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default DashboardShowBid;

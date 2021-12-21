@@ -10,8 +10,9 @@ import NotFound from '../components/NotFound';
 import Dashboard from '../components/Dashboard/Dashboard';
 import Login from '../components/Login';
 import CreateReq from '../components/Dashboard/Customer/Create-request/CreateReq';
-import Bid from '../components/Dashboard/Seller/SelectBid/Bid';
-import Acceptbid from '../components/Dashboard/Customer/Accept-bid/Acceptbid';
+import Acceptbid from '../components/Dashboard/Customer/Accept-bid/AcceptBid';
+import MakeBid from '../components/Dashboard/Seller/Make-bid/MakeBid';
+import ShowBids from '../components/Dashboard/Customer/Show-bids/ShowBids';
 
 function App() {
   return (
@@ -38,7 +39,10 @@ function App() {
               <Link to="/showBids">showBids</Link>
             </li>
             <li>
-              <Link to="/acceptBids">acceptBids</Link>
+              <Link to="/acceptBid">acceptBid</Link>
+            </li>
+            <li>
+              <Link to="/makeBid">MakeBid</Link>
             </li>
           </ul>
         </nav>
@@ -51,8 +55,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/createNewRequest" element={<CreateReq />} />
-          <Route path="/showBids" element={<Bid />} />
-          <Route path="/acceptBids" element={<Acceptbid />} />
+          <Route path="/showBids" element={<ShowBids />} />
+          <Route path="/acceptBid" element={<Acceptbid />} />
+          <Route path="/MakeBid" element={<MakeBid />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

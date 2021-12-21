@@ -1,4 +1,6 @@
+import { Button } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NewBids from './NewBids';
 
 const data = [
@@ -14,12 +16,17 @@ const data = [
   }
 ];
 
-const RightSideBar = () => {
+const ShowBids = () => {
   return (
     <div>
+      <Link to="/dashboard">
+        <Button variant="contained" sx={{ ml: 2, mb: 2 }}>
+          back to dashboard
+        </Button>
+      </Link>
       <NewBids data={data} />
     </div>
   );
 };
 
-export default RightSideBar;
+export default ShowBids;

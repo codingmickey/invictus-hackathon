@@ -24,7 +24,7 @@ export default function ResponsiveDialog({ data }) {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        show more
+        Show more
       </Button>
       <Dialog
         fullScreen={fullScreen}
@@ -32,18 +32,18 @@ export default function ResponsiveDialog({ data }) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title">
         <DialogTitle sx={{ pb: 1 }} variant="h4" id="responsive-dialog-title">
-          {data[0].productName ? data[0].productName : '...'}
+          {data[0].productName}
           <Typography sx={{ mt: 1 }} variant="body1">
             Deal by:{' '}
           </Typography>
-          <Typography variant="h6">{data[0].cname ? data[0].cname : '...'}</Typography>
+          <Typography variant="h6">{data[0].cname}</Typography>
         </DialogTitle>
         <DialogContent>
           <Typography variant="body1" sx={{ mb: 0.5 }}>
-            Cost per unit: &#x20B9; {data[0].cperItem ? data[0].cperItem : '..'}
+            Cost per unit: &#x20B9; {data[0].cperItem}
           </Typography>
           <Typography variant="body2" sx={{ mb: 1.5 }}>
-            Quantity: {data[0].noOfItems ? data[0].noOfItems : '..'}
+            Quantity: {data[0].noOfItems}
           </Typography>
           <Typography sx={{ mb: 0.8 }} gutterBottom>
             Tags:

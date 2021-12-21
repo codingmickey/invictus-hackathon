@@ -1,5 +1,7 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 function Acceptbid() {
   const rows = [
@@ -39,7 +41,12 @@ function Acceptbid() {
   ];
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: '80%', margin: '2% 5%' }}>
+      <Link to="/dashboard">
+        <Button variant="contained" sx={{ ml: 2, mb: 2 }}>
+          back to dashboard
+        </Button>
+      </Link>
       <h1>All the bids by Suppliers</h1>
       <DataGrid
         rows={rows}

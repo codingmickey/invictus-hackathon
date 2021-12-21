@@ -7,22 +7,23 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import '../../../../containers/Card.css';
-import { useState } from 'react';
+// import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { Link } from 'react-router-dom';
 
 const Input = styled('input')({
   display: 'none'
 });
 
 export default function CreateReq() {
-  const { register, handleSubmit } = useForm();
-  const [result, setResult] = useState('');
-  const onSubmit = (data) => setResult(JSON.stringify(data));
+  // const { register, handleSubmit } = useForm();
+  // const [result, setResult] = useState('');
+  // const onSubmit = (data) => setResult(JSON.stringify(data));
   // return (
   //     <form onSubmit={handleSubmit(onSubmit)}>
   //       <Headers />
@@ -40,8 +41,15 @@ export default function CreateReq() {
 
   return (
     <div>
+      <Link to="/dashboard">
+        <Button variant="contained" sx={{ ml: 2, mb: 2 }}>
+          back to dashboard
+        </Button>
+      </Link>
       <h1 style={{ margin: '0 0 0 2%' }}>Create a Request</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+      //  onSubmit={handleSubmit(onSubmit)}
+      >
         {/* <Card variant="outlined" className="createResCard" sx={{ minWidth: 800 }} > */}
         <Autocomplete
           disablePortal

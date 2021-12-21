@@ -4,7 +4,7 @@ import { IMaskInput } from 'react-imask';
 import { InputAdornment, TextField, Button, Typography, Grid } from '@mui/material';
 
 import IconButton from '@mui/material/IconButton';
-import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import { ReactComponent as Logo } from '../images/Logo.svg';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -58,7 +58,14 @@ function Register() {
         <h2 style={{ color: 'black', marginTop: 0, paddingTop: '0.83em', textAlign: 'center' }}>
           <Link to="/">
             <IconButton edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
-              <AddBusinessIcon sx={{ fontSize: '3.5rem' }} />
+              <Logo
+                style={{
+                  height: '4.3rem',
+                  width: '4.3rem',
+                  backgroundColor: 'white',
+                  borderRadius: '50%'
+                }}
+              />
             </IconButton>
 
             <Typography variant="h2" sx={{ fontFamily: 'Poppins', fontWeight: 900 }}>
