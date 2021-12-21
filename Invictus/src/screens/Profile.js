@@ -283,7 +283,7 @@ const handleValidName = (val) => {
         <View style={paddingTop=40}>
         <TouchableOpacity style={styles.commandButton} >
           <Text style={styles.panelButtonTitle}>Submit</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> 
         <TouchableOpacity style={styles.commandButton} onPress={() => navigation.navigate('Login')} >
           <Text style={styles.panelButtonTitle}>Logout</Text>
         </TouchableOpacity>

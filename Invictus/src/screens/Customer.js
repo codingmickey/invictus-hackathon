@@ -1,9 +1,12 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, Text, StatusBar, StyleSheet, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
+import { Dropdown } from 'react-native-material-dropdown';
 
 export default function Customer() {
+
     return (
         <View style={styles.container} >
+            <StatusBar backgroundColor='#0F4C75' barStyle="light-content"/>
             <ImageBackground source={require('../assets/customer_bg.jpeg')} style={styles.backgroundImage}>
             <View style={styles.header}>
     
@@ -96,7 +99,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height:37,
         borderColor: "#3282B8",
-        boxSizing: "border-box",
         borderRadius: 5,
     },
     commandButton: {
