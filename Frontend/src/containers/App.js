@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@mui/system';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import React from 'react';
 import './App.css';
@@ -13,6 +13,7 @@ import CreateReq from '../components/Dashboard/Customer/Create-request/CreateReq
 import Acceptbid from '../components/Dashboard/Customer/Accept-bid/AcceptBid';
 import MakeBid from '../components/Dashboard/Seller/Make-bid/MakeBid';
 import ShowBids from '../components/Dashboard/Customer/Show-bids/ShowBids';
+import SellerRegister from '../components/Dashboard/Seller/Register/SellerRegister';
 
 function App() {
   return (
@@ -44,22 +45,26 @@ function App() {
             <li>
               <Link to="/makeBid">MakeBid</Link>
             </li>
+            <li>
+              <Link to="/sellerRegister">sellerRegister</Link>
+            </li>
           </ul>
         </nav>
 
         {/* A <> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/createNewRequest" element={<CreateReq />} />
-          <Route path="/showBids" element={<ShowBids />} />
-          <Route path="/acceptBid" element={<Acceptbid />} />
-          <Route path="/MakeBid" element={<MakeBid />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/createNewRequest" component={CreateReq} />
+          <Route path="/showBids" component={ShowBids} />
+          <Route path="/acceptBid" component={Acceptbid} />
+          <Route path="/MakeBid" component={MakeBid} />
+          <Route path="/sellerRegister" component={SellerRegister} />
+          <Route path="*" component={NotFound} />
+        </Switch>
       </Router>
     </ThemeProvider>
   );

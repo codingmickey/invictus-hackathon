@@ -20,12 +20,13 @@ const register = async (req, res) => {
       httpOnly: true,
       maxAge: maxTime * 1000,
     });
-    res.status(201).json({
-      success: true,
-      message: 'new User added successfully',
-      newUser,
-      token,
-    });
+    res.redirect('http://localhost:3000/dashboard');
+    // res.status(201).json({
+    //   success: true,
+    //   message: 'new User added successfully',
+    //   newUser,
+    //   token,
+    // });
   } catch (err) {
     console.log(err);
     res.status(400).json({
@@ -39,7 +40,7 @@ const login = async (req, res) => {
   try {
     const user = await User.findByCredentials(
       req.body.email,
-      req.body.password
+      req.body.password,
     );
     const token = await user.generateAuthToken();
     // Sending the jwt token in a cookie🍪
@@ -47,7 +48,9 @@ const login = async (req, res) => {
       httpOnly: true,
       maxAge: maxTime * 1000,
     });
-    res.send({ user, token });
+
+    res.redirect('http://localhost:3000/dashboard');
+    // res.send({ user, token });
   } catch (error) {
     res.json({ error: error.message });
   }
@@ -105,7 +108,7 @@ const updateUser = async (req, res) => {
     const found = await User.updateOne(
       user,
       { $set: updateData },
-      { omitUndefined: 1 }
+      { omitUndefined: 1 },
     );
     if (!found) {
       res.status(404).json({

@@ -6,7 +6,7 @@ import GoogleButton from 'react-google-button';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { ReactComponent as Logo } from '../images/Logo.svg';
 
@@ -19,17 +19,18 @@ function Login() {
     mobileNumber: '',
     role: ''
   });
-  let history = useNavigate();
+  let navigate = useHistory();
 
   useEffect(() => {
     let reqOptions = {
-      url: '/verify',
+      url: 'martopia/user/verify',
       method: 'GET'
     };
     axios.request(reqOptions).then(function (response) {
       console.log(response.data.msg);
-      if (response.data.msg === 'Access Granted') {
-        history.push('/dashboard');
+      if (response.status === 201 && response.data.msg === 'Access Granted') {
+        console.log('HI THERE');
+        navigate.push('/dashboard');
       }
     });
   });
@@ -75,7 +76,7 @@ function Login() {
           Sign in to your account{' '}
         </Typography>
 
-        <form action="/user/register" method="post">
+        <form action="/martopia/user/login" method="post">
           {/* <FormControl sx={{ m: 1 }} variant="outlined" action="/login" method="post"> */}
           {/* Email */}
           <TextField
@@ -136,6 +137,9 @@ function Login() {
               label="Continue with Google"
               fullWidth
               style={{ width: '100%', fontFamily: 'Poppins', fontSize: '1.15rem' }}
+              onClick={() => {
+                window.location.href = 'http://localhost:3001/martopia/user/auth/google';
+              }}
             />
           </Grid>
           <h4 style={{ textAlign: 'center' }}>

@@ -27,7 +27,7 @@ const vendorSchema = new Schema(
       min: 1,
     },
     productsSellerCat: {
-      type: Array,
+      type: String,
       required: true,
     },
     isCertified: {
@@ -43,7 +43,7 @@ const vendorSchema = new Schema(
     },
     reviews: [{ type: String }],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Vendor = mongoose.model('Vendor', vendorSchema);

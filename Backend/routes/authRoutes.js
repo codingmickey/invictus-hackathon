@@ -8,11 +8,14 @@ import {
   updateUser,
 } from '../controllers/userController.js';
 import protect from '../middleware/authMiddleware.js';
+import verify from '../controllers/authVerify.js';
 
 const router = express.Router();
 
 router.route('/register').post(register); // Register Route
 router.route('/login').post(login); // Login Route
+router.route('/verify').get(verify);
+router.route('/isLogged').post(protect);
 router.route('/logout').post(protect, logoutUser);
 router.route('/showMe').get(protect, showMyProfile);
 router.route('/update').put(protect, updateUser);

@@ -22,22 +22,6 @@ const Input = styled('input')({
 
 export default function CreateReq() {
   // const { register, handleSubmit } = useForm();
-  // const [result, setResult] = useState('');
-  // const onSubmit = (data) => setResult(JSON.stringify(data));
-  // return (
-  //     <form onSubmit={handleSubmit(onSubmit)}>
-  //       <Headers />
-  //       <input {...register("firstName")} placeholder="First name" />
-  //       <input {...register("lastName")} placeholder="Last name" />
-  //       <select {...register("category")}>
-  //         <option value="">Select...</option>
-  //         <option value="A">Category A</option>
-  //         <option value="B">Category B</option>
-  //       </select>
-  //       <p>{result}</p>
-  //       <input type="submit" />
-  //     </form>
-  //   );
 
   return (
     <div>
@@ -47,16 +31,14 @@ export default function CreateReq() {
         </Button>
       </Link>
       <h1 style={{ margin: '0 0 0 2%' }}>Create a Request</h1>
-      <form
-      //  onSubmit={handleSubmit(onSubmit)}
-      >
+      <form action="/martopia/user/register" method="post">
         {/* <Card variant="outlined" className="createResCard" sx={{ minWidth: 800 }} > */}
         <Autocomplete
           disablePortal
           id="combo-box-demo"
           options={products}
           sx={{ width: 300, padding: '2%' }}
-          renderInput={(params) => <TextField {...params} label="Product Category" />}
+          renderInput={(params) => <TextField {...params} label="Product Category" required />}
         />
         <TextField
           required

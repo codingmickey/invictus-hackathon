@@ -1,14 +1,69 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { IMaskInput } from 'react-imask';
-import { InputAdornment, TextField, Button, Typography, Grid } from '@mui/material';
+import { InputAdornment, TextField, Button, Typography, Grid, Autocomplete } from '@mui/material';
 
 import IconButton from '@mui/material/IconButton';
-import { ReactComponent as Logo } from '../images/Logo.svg';
+import { ReactComponent as Logo } from '../../../../images/Logo.svg';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link } from 'react-router-dom';
+
+const products = [
+  {
+    value: ' Drugs & Pharmaceuticals',
+    label: ' Drugs & Pharmaceuticals'
+  },
+  {
+    value: ' Hospital & Diagnostics',
+    label: ' Hospital & Diagnostics'
+  },
+  {
+    value: 'BTC',
+    label: ' Food & Beverages'
+  },
+  {
+    value: 'Industrial Plants & Machinery',
+    label: 'Industrial Plants & Machinery'
+  },
+  {
+    value: 'Industrial Supplies',
+    label: 'Industrial Supplies'
+  },
+  {
+    value: 'Building & Construction',
+    label: 'Building & Construction'
+  },
+  {
+    value: 'Apparel & Garments',
+    label: 'Apparel & Garments'
+  },
+  {
+    value: 'Electronics & Electrical',
+    label: 'Electronics & Electrical'
+  },
+  {
+    value: 'Chemicals, Dyes & Solvents',
+    label: 'Chemicals, Dyes & Solvents'
+  },
+  { label: 'Home Textile & Furnishing' },
+  { label: 'Cosmetics & Personal Care' },
+  { label: 'Books & Stationery' },
+  { label: 'Textiles, Yarn & Fabrics' },
+  { label: 'Kitchen Utensils & Appliances' },
+  { label: 'Handicrafts & Decoratives' },
+  { label: 'Hand & Machine Tools' },
+  { label: 'Metals, Alloys & Minerals' },
+  { label: 'Sports Goods, Toys & Games' },
+  { label: 'Security Systems & Services' },
+  { label: 'Herbal & Ayurvedic Product' },
+  { label: 'Fashion Accessories & Gear' },
+  { label: 'Computer & IT Solutions' },
+  { label: 'Gems, Jewelry & Astrology' },
+  { label: 'Cosmetics & Personal Care' },
+  { label: 'Home Textile & Furnishing' }
+];
 
 // Mobile Number
 const TextMaskCustom = React.forwardRef(function TextMaskCustom(props, ref) {
@@ -73,7 +128,7 @@ function Register() {
             </Typography>
           </Link>
         </h2>
-        <Typography variant="h4">Create a new account for free </Typography>
+        <Typography variant="h4">Make an account to Sell for free </Typography>
         <form action="/martopia/user/register" method="post">
           {/* <FormControl sx={{ m: 1 }} variant="outlined" action="/login" method="post"> */}
           {/* Email */}
@@ -149,6 +204,15 @@ function Register() {
             fullWidth
             sx={{ my: '1rem' }}
             required
+          />
+
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={products}
+            sx={{ my: '1rem' }}
+            fullWidth
+            renderInput={(params) => <TextField {...params} label="Product Category" required />}
           />
 
           {/* Sign Up buttons */}

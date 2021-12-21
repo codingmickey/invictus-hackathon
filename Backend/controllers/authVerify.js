@@ -1,14 +1,16 @@
 import jwt from 'jsonwebtoken';
 
-module.exports = (req, res) => {
+const verify = (req, res) => {
   const token = req.cookies.jwt;
   console.log(`From the file authVerify ${token}`);
 
   if (token) {
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
     req.user = verified;
-    res.json({ msg: 'Access Granted' });
+    res.status(201).send({ msg: 'Access Granted' });
   } else {
-    res.json({ msg: 'Access Denied' });
+    res.status(400).send({ msg: 'Access Denied' });
   }
 };
+
+export default verify;

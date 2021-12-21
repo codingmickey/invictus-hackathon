@@ -48,7 +48,7 @@ export default function ResponsiveDialog({ data }) {
           <Typography sx={{ mb: 0.8 }} gutterBottom>
             Tags:
             {data[0].tags.map((tag, i) => (
-              <Chip label={tag} color="secondary" sx={{ mx: 0.3 }} />
+              <Chip label={tag} key={i} color="secondary" sx={{ mx: 0.3 }} />
             ))}
           </Typography>
 

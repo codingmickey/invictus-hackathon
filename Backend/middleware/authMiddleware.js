@@ -13,6 +13,7 @@ const protect = async (req, res, next) => {
       throw new Error();
     }
     req.user = user;
+    res.status(200).json({ msg: 'successful auth' });
     next();
   } catch (error) {
     console.log(error);

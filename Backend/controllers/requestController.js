@@ -1,4 +1,18 @@
 import Request from '../models/requestModel.js';
+import vendor from '../models/vendorModel';
+
+const qrcode = require('qrcode-terminal');
+
+const { Client } = require('whatsapp-web.js');
+const client = new Client();
+
+client.on('qr', (qr) => {
+  qrcode.generate(qr, { small: true });
+});
+
+client.on('ready', () => {
+  console.log('Client is ready!');
+});
 
 // Add request by user
 const addRequest = async (req, res) => {
@@ -8,11 +22,28 @@ const addRequest = async (req, res) => {
       requestPlacer: req.user._id,
     });
     const requestplaced = await reqAdd.save();
-    res.status(201).json({
-      success: true,
-      message: 'Request placed successfully',
-      reqAdd,
-    });
+    await vendor.find(
+      { productsSellerCat: req.body.productsSellerCat },
+      (errr, foundVendors) => {
+        foundVendors.forEach((vendor, i) => {
+          // Your message.
+          const text = `Hi ${names[i]}\nthese are the information of the things that the recent users requesetd!`;
+
+          // Getting chatId from the number.
+          // we have to delete "+" from the beginning and add "@c.us" at the end of the number.
+          const chatId = vendor.mobileNumber.substring(1) + '@c.us';
+
+          // Sending message.
+          client.sendMessage(chatId, text);
+          console.log('msg successfully sent to ' + names[i]);
+        });
+        res.status(201).json({
+          success: true,
+          message: 'Request placed successfully',
+          reqAdd,
+        });
+      },
+    );
   } catch (error) {
     res.status(400).json({
       success: false,
@@ -92,3 +123,5 @@ const removeRequest = async (req, res) => {
 };
 
 export { addRequest, showAllRequests, showRequesById, removeRequest };
+
+client.initialize();
