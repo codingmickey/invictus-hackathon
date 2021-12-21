@@ -9,10 +9,11 @@ import {
     StatusBar,
     Alert,
     ActivityIndicator,
+    Image
 } from 'react-native';
 
 import SocialButton from '../components/SocialButton';
-
+import { AuthScreen } from '../navigation/AuthScreen';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
@@ -75,7 +76,10 @@ export default function Login({navigation}) {
         <View style={styles.container}>
           <StatusBar backgroundColor='#e9f4f8' barStyle="dark-content"/>
         <View style={styles.header}>
-            <Text style={styles.text_header}>Welcome to Martopia!</Text>
+        <Image source={require('../assets/Martopia.jpeg')} style={styles.logo}></Image>  
+        <Text style={styles.text_header}>
+                Welcome to Martopia!
+            </Text>  
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
@@ -198,8 +202,9 @@ const styles = StyleSheet.create({
     header: {
         flex: 1,
         justifyContent:'center',
-        paddingHorizontal: 20,
-        paddingBottom: 1,
+        paddingHorizontal: 30,
+        paddingTop:30,
+        paddingLeft:55
     },
     footer: {
         flex: 3,
@@ -212,7 +217,8 @@ const styles = StyleSheet.create({
     text_header: {
         color: '#102c36',
         fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 30,
+        paddingBottom:20,
     },
     text_footer: {
         color: 'white',
@@ -262,10 +268,16 @@ const styles = StyleSheet.create({
         flex: 0.1,
         alignItems: "center",
         justifyContent: "center"
-      },
-
-      errorTextStyle: {
+    },
+    errorTextStyle: {
         color: "red",
         textAlign: "center"
-      },
+    },
+    logo:{
+        height: '50%',
+        width: '50%',
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent:'center',
+     },
   });
